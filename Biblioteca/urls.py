@@ -18,6 +18,9 @@ from django.contrib import admin
 from django.contrib.auth.views import LoginView, logout_then_login, PasswordResetView, PasswordResetDoneView, PasswordResetConfirmView, PasswordResetCompleteView
 from django.urls import reverse_lazy
 
+from . import settings
+from django.contrib.staticfiles.urls import static
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
@@ -37,6 +40,6 @@ urlpatterns = [
     url(r'^/reset/password_reset_done', PasswordResetDoneView.as_view(template_name='registro/password_reset_done.html'), name='password_reset_done'),
     url(r'^reset/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>.+)/$', PasswordResetConfirmView.as_view(template_name='registro/password_reset_confirm.html'), name='password_reset_confirm'),
     url(r'^reset/done', PasswordResetCompleteView.as_view(template_name='registro/password_reset_complete.html'),name='password_reset_complete'),
-
-
 ]
+urlpatterns += staticfiles_urlpatterns()
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

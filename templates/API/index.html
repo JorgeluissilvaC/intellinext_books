@@ -1,1 +1,59 @@
-<h1>Hola API</h1>
+{% extends 'base/base.html' %}
+
+{% block content %} 
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-12 m-3">
+            <h1>Buscador OpenLibra - Biblioteca</h1>
+        </div>
+    </div>
+    <div class="row">
+        <!-- Buscador -->
+        <div class="col-12 m-3 ">
+            <form action="{% url 'API:search' %}"   method="POST" class="form-inline my-2 my-lg-0" >
+                {% csrf_token %}
+                <input name="q" id="q" class="form-control mr-sm-2" type="search" placeholder="Ingresa el titulo" aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
+              </form>
+        </div>
+    </div>
+            {% if results %}
+            <div class="row">
+                <div class="col-12 ">
+                    <h3>Resultados</h3>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-3 m-3 ">
+                    <form action="{% url 'API:report_pdf' %}"   method="GET" class="form-inline my-2 my-lg-0" >
+                        {% csrf_token %}
+                        <input name="q" id="q"  value="{{ q }}" type="hidden">
+                        <button class="btn btn-info btn-block" type="submit"> Descargar PDF</button>
+                    </form>
+                </div>
+                <div class="col-3 m-3 ">
+                    <form action="{% url 'API:report_excel' %}"   method="GET" class="form-inline my-2 my-lg-0" >
+                        {% csrf_token %}
+                        <input name="q" id="q"  value="{{ q }}" type="hidden">
+                        <button class="btn btn-info btn-block" type="submit"> Descargar Excel</button>
+                    </form>
+                </div>
+            </div>
+                {% for result in results %}
+            <div class="row">
+                <div class="col-12 m-3 ">
+                    <div class="card">
+                        <div class="card-body">
+                          <h5 class="card-title">{{ result.title }}</h5>
+                          <h6 class="card-subtitle mb-2 text-muted">{{ result.publisher }}</h6>
+                          <p class="card-text">{{ result.content }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                {% endfor %}
+            {% endif %}
+</div>
+{% endblock %}
