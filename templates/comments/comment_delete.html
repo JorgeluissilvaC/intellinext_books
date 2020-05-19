@@ -1,0 +1,16 @@
+{% extends 'base/base.html' %}
+
+{% block header %}
+
+{% endblock %}
+
+{% block content %} 
+<form method="POST">
+    {% csrf_token %}
+    <h3>¿Desea eliminar el registro de "{{comments.text}}"?</h3>
+
+    <button class='btn btn-danger' type="submit">Si, eliminar</button>
+    <a class='btn btn-default' href="{% url 'books:list_book' %}">Cancelar</a>
+</form>
+
+{% endblock %}

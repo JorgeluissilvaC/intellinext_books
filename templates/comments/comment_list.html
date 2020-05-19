@@ -1,0 +1,66 @@
+{% extends 'base/base.html' %}
+
+{% block content %} 
+<div class="container">
+    <div class="row">
+        <div class="col-12 ">
+            {% if book %}
+            <h2> {{ book.title }}</h2>
+            <h4>{{ book.publication_date }}</h4>
+            {% endif %}
+        </div>
+    </div>
+    <div class="row">
+        <!--Agregar un comentario -->
+        <div class="col-12 ">
+            <div class="m-5 center">
+                <a href="{% url 'books:new_comments' book.id %}" class="btn btn-success ">Agregar un comentario</a>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <!--Buscador de animales-->
+        <div class="col-12">
+
+        </div>
+    </div>
+    <div class="row">
+        <!--Lista de Animales -->
+        <div class="col-12">
+            {% if comentarios %}
+
+
+            <table class="table-bordered">
+                <thead>
+                    <tr>
+                        <td>Usuario</td>
+                        <td>Nombre</td>
+                        <td>Comentario</td>
+                        <td>Fecha de publicación</td>
+                        <td>Acciones</td>
+                    </tr>
+                </thead>
+                <tbody> 
+                    {% for comment in comentarios %}
+                    <tr>
+                        <td>{{comment.id_user.username}}</td>
+                        <td>{{comment.id_user.first_name}} {{comment.id_user.last_name}}</td>
+                        <td>{{comment.text}}</td>
+                        <td>{{comment.created_date}}</td>
+                        <td>
+                            <div class="btn-group-vertical">
+                            <a class="btn btn-primary" href="{% url 'books:edit_comments'  book.id comment.id %}">Editar</a>
+                            <a class="btn btn-danger" href="{% url 'books:delete_comments' book.id comment.id %}">Eliminar</a>
+                            </div>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+                {% else %}
+                <h1> No se encontraron Comentario registrados</h1>
+                {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}
