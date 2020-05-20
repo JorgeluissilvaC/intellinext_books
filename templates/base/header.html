@@ -3,9 +3,6 @@
     <a class="navbar-brand" href="{% url 'books:list_book' %}">Biblioteca</a>  
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
-          <a class="nav-link" href="{% url 'books:list_book' %}">Lista de libros <span class="sr-only">(current)</span></a>
-        </li>
 
         <li class="nav-item active">
           <a class="nav-link" href="{% url 'API:index' %}">OpenLibra (API) <span class="sr-only">(current)</span></a>
@@ -13,6 +10,16 @@
 
         
       </ul>
+      <div class="dropdown">
+        <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Libros 
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+          <a class="dropdown-item" href="{% url 'books:list_book' %}">Lista de libros</a>
+          <a class="dropdown-item" href="{% url 'books:new_book' %}">Agregar un libro</a>
+        </div>
+      </div>
+
       <div class="dropdown">
         <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Bienvenido {{ request.user.first_name  }} {{request.user.last_name }}, ({{request.user.username}})
@@ -22,6 +29,6 @@
           <a class="dropdown-item" href="{% url 'usuario:delete' request.user.id %}">Eliminar Usuario</a>
         </div>
       </div>
-      <a class="nav-link" href="{% url 'logout' %}" >Log Out <span class="sr-only">(current)</span></a>
+      <a class="btn btn-danger" class="nav-link" href="{% url 'logout' %}" >Cerrar sesión <span class="sr-only">(current)</span></a>
     </div>
   </nav>

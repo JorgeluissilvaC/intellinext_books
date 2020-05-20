@@ -18,7 +18,7 @@ class book_form(forms.ModelForm):
 
         widgets = {
                 'title': forms.TextInput(attrs={'class': 'form-control'}),
-                'publication_date': forms.DateInput(attrs={'class': 'form-control'}),
+                'publication_date': forms.DateInput(attrs={'type': 'date'})
 
         }
 

@@ -13,7 +13,7 @@
     <div class="row">
         <!--Agregar un comentario -->
         <div class="col-12 ">
-            <div class="m-5 center">
+            <div class="m-1 center">
                 <a href="{% url 'books:new_comments' book.id %}" class="btn btn-success ">Agregar un comentario</a>
             </div>
         </div>
@@ -28,35 +28,18 @@
         <!--Lista de Animales -->
         <div class="col-12">
             {% if comentarios %}
-
-
-            <table class="table-bordered">
-                <thead>
-                    <tr>
-                        <td>Usuario</td>
-                        <td>Nombre</td>
-                        <td>Comentario</td>
-                        <td>Fecha de publicación</td>
-                        <td>Acciones</td>
-                    </tr>
-                </thead>
-                <tbody> 
+                <ul class="list-group list-group-flush">
                     {% for comment in comentarios %}
-                    <tr>
-                        <td>{{comment.id_user.username}}</td>
-                        <td>{{comment.id_user.first_name}} {{comment.id_user.last_name}}</td>
-                        <td>{{comment.text}}</td>
-                        <td>{{comment.created_date}}</td>
-                        <td>
-                            <div class="btn-group-vertical">
-                            <a class="btn btn-primary" href="{% url 'books:edit_comments'  book.id comment.id %}">Editar</a>
-                            <a class="btn btn-danger" href="{% url 'books:delete_comments' book.id comment.id %}">Eliminar</a>
-                            </div>
-                        </td>
-                    </tr>
+                        <li class="list-group-item">
+                          <p><b>Comentario</b>: {{comment.text}}</p> 
+                          <p><b>Usuario</b>: {{comment.id_user.username}} </p> 
+                          <p><b>Nombre</b>: {{comment.id_user.first_name}} {{comment.id_user.last_name}}</p> 
+                          <p><b>Fecha de creación</b>: {{comment.created_date}} </p> 
+                          <a class="btn btn-primary" href="{% url 'books:edit_comments'  book.id comment.id %}">Editar</a>
+                          <a class="btn btn-danger" href="{% url 'books:delete_comments' book.id comment.id %}">Eliminar</a>
+                        </li>
                     {% endfor %}
-                </tbody>
-            </table>
+                </ul>
                 {% else %}
                 <h1> No se encontraron Comentario registrados</h1>
                 {% endif %}
