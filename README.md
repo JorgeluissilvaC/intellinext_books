@@ -1,4 +1,3 @@
-# intellinext_books
 # Instrucciones de instalación:
 1. Validamos que la máquina tenga instalado Python 2. Este proyecto se desarrolló en Python 2.7.18.
 2. Instalar modulo virtualenv de Python:
