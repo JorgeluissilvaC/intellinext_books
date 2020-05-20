@@ -65,12 +65,17 @@ class report_pdf(View):
         i = 750
 
         for book in find_book(params={'book_title':self.request.GET["q"]}):
+            
             pdf.setFont("Helvetica", 16)
-            pdf.drawString(10, i, "Publica:" + book["publisher"])
+            pdf.drawString(10, i,'Libro:'+ book["title"])
 
             pdf.setFont("Helvetica", 16)
-            pdf.drawString(10, i - 20,'Libro:'+ book["title"])
-            i = i - 50
+            pdf.drawString(10, i - 20, "Publica:" + book["publisher"])
+
+            pdf.setFont("Helvetica", 16)
+            pdf.drawString(10, i - 40, "Contenido:" + book["content_short"])
+
+            i = i - 100
 
         #Con show page hacemos un corte de página para pasar a la siguiente
         pdf.showPage()

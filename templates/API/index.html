@@ -46,9 +46,10 @@
                 <div class="col-12 m-3 ">
                     <div class="card">
                         <div class="card-body">
-                          <h5 class="card-title">{{ result.title }}</h5>
+                            <h5 class="card-title">{{ result.title }}</h5>
+                            <img src="{{ result.thumbnail }}">
                           <h6 class="card-subtitle mb-2 text-muted">{{ result.publisher }}</h6>
-                          <p class="card-text">{{ result.content }}</p>
+                          <p class="card-text">{{ result.content_short }}</p>
                         </div>
                     </div>
                 </div>
