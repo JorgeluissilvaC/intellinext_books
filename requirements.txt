@@ -1,0 +1,4 @@
+Django~=1.11.29
+reportlab~=3.5.42
+xlwt~=1.3.0
+requests~=2.23.0
